@@ -60,13 +60,13 @@ namespace LibNoise.Filter
         /// <summary>
         /// Default persistence value for the Voronoi noise module.
         /// </summary>
-        public const float DefaultDisplacement = 1.0f;
+        public const double DefaultDisplacement = 1.0f;
 
         #endregion
 
         #region Fields
 
-        private float _displacement = DefaultDisplacement;
+        private double _displacement = DefaultDisplacement;
 
         private bool _distance;
 
@@ -80,7 +80,7 @@ namespace LibNoise.Filter
         /// value</i> controls the range of random values to assign to each
         /// cell.  The range of random values is +/- the displacement value.
         /// </summary>
-        public float Displacement
+        public double Displacement
         {
             get { return _displacement; }
             set { _displacement = value; }
@@ -112,7 +112,7 @@ namespace LibNoise.Filter
         /// <param name="y">The input coordinate on the y-axis.</param>
         /// <param name="z">The input coordinate on the z-axis.</param>
         /// <returns>The resulting output value.</returns>
-        public float GetValue(float x, float y, float z)
+        public double GetValue(double x, double y, double z)
         {
             //TODO This method could be more efficient by caching the seed values.
             x *= _frequency;
@@ -123,10 +123,10 @@ namespace LibNoise.Filter
             int yInt = (y > 0.0f ? (int) y : (int) y - 1);
             int zInt = (z > 0.0f ? (int) z : (int) z - 1);
 
-            float minDist = 2147483647.0f;
-            float xCandidate = 0.0f;
-            float yCandidate = 0.0f;
-            float zCandidate = 0.0f;
+            double minDist = 2147483647.0f;
+            double xCandidate = 0.0f;
+            double yCandidate = 0.0f;
+            double zCandidate = 0.0f;
 
             // Inside each unit cube, there is a seed point at a random position.  Go
             // through each of the nearby cubes until we find a cube with a seed point
@@ -139,14 +139,14 @@ namespace LibNoise.Filter
                     {
                         // Calculate the position and distance to the seed point inside of
                         // this unit cube.
-                        float xPos = xCur + _source3D.GetValue(xCur, yCur, zCur);
-                        float yPos = yCur + _source3D.GetValue(xCur, yCur, zCur);
-                        float zPos = zCur + _source3D.GetValue(xCur, yCur, zCur);
+                        double xPos = xCur + _source3D.GetValue(xCur, yCur, zCur);
+                        double yPos = yCur + _source3D.GetValue(xCur, yCur, zCur);
+                        double zPos = zCur + _source3D.GetValue(xCur, yCur, zCur);
 
-                        float xDist = xPos - x;
-                        float yDist = yPos - y;
-                        float zDist = zPos - z;
-                        float dist = xDist*xDist + yDist*yDist + zDist*zDist;
+                        double xDist = xPos - x;
+                        double yDist = yPos - y;
+                        double zDist = zPos - z;
+                        double dist = xDist*xDist + yDist*yDist + zDist*zDist;
 
                         if (dist < minDist)
                         {
@@ -161,15 +161,15 @@ namespace LibNoise.Filter
                 }
             }
 
-            float value;
+            double value;
 
             if (_distance)
             {
                 // Determine the distance to the nearest seed point.
-                float xDist = xCandidate - x;
-                float yDist = yCandidate - y;
-                float zDist = zCandidate - z;
-                value = ((float) Math.Sqrt(xDist*xDist + yDist*yDist + zDist*zDist)
+                double xDist = xCandidate - x;
+                double yDist = yCandidate - y;
+                double zDist = zCandidate - z;
+                value = ((double) Math.Sqrt(xDist*xDist + yDist*yDist + zDist*zDist)
                     )*Libnoise.Sqrt3 - 1.0f;
             }
             else

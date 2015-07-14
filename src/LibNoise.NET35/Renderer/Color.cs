@@ -188,7 +188,7 @@ namespace LibNoise.Renderer
         /// <param name="t">the amount to interpolate between the two colors.</param>
         /// <param name="withAlphaChannel">Flag indicates if this method also interpolate alpha channel.</param>
         /// <returns>The interpolated color, with the same type of color0.</returns>
-        public static IColor Lerp(IColor color0, IColor color1, float t, bool withAlphaChannel = true)
+        public static IColor Lerp(IColor color0, IColor color1, double t, bool withAlphaChannel = true)
         {
             var color = (IColor) Activator.CreateInstance(color0.GetType());
             color.Red = Libnoise.Lerp(color0.Red, color1.Red, t);
@@ -206,7 +206,7 @@ namespace LibNoise.Renderer
         /// <param name="color1">The second color.</param>
         /// <param name="t">the amount to interpolate between the two colors.</param>
         /// <returns>The interpolated color.</returns>
-        public static IColor Lerp32(IColor color0, IColor color1, float t)
+        public static IColor Lerp32(IColor color0, IColor color1, double t)
         {
             return Lerp(color0, color1, t, true);
         }
@@ -218,7 +218,7 @@ namespace LibNoise.Renderer
         /// <param name="color1">The second color.</param>
         /// <param name="t">The amount to interpolate between the two colors.</param>
         /// <returns>The interpolated color.</returns>
-        public static IColor Lerp24(IColor color0, IColor color1, float t)
+        public static IColor Lerp24(IColor color0, IColor color1, double t)
         {
             return Lerp(color0, color1, t, false);
         }

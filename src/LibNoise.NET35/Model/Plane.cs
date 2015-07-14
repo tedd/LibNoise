@@ -65,7 +65,7 @@ namespace LibNoise.Model
         /// <param name="x">The x coordinate of the input value</param>
         /// <param name="z">The z coordinate of the input value</param>
         /// <returns>The output value from the noise module</returns>
-        public float GetValue(float x, float z)
+        public double GetValue(double x, double z)
         {
             return ((IModule3D) PSourceModule).GetValue(x, 0.0f, z);
         }

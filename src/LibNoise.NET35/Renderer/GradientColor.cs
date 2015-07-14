@@ -180,7 +180,7 @@ namespace LibNoise.Renderer
         /// </summary>
         /// <param name="position">The position of this gradient point</param>
         /// <param name="color">The color of this gradient point</param>
-        public void AddGradientPoint(float position, IColor color)
+        public void AddGradientPoint(double position, IColor color)
         {
             AddGradientPoint(new GradientPoint(position, color));
         }
@@ -231,7 +231,7 @@ namespace LibNoise.Renderer
         /// </summary>
         /// <param name="position">The specified position</param>
         /// <returns>The color at that position</returns>
-        public IColor GetColor(float position)
+        public IColor GetColor(double position)
         {
             //System.Diagnostics.Debug.Assert(_gradientPoints.Count >= 2, "At least two points must be defined");
 
@@ -259,9 +259,9 @@ namespace LibNoise.Renderer
                 return _gradientPoints[index1].Color;
 
             // Compute the alpha value used for linear interpolation.
-            float input0 = _gradientPoints[index0].Position;
-            float input1 = _gradientPoints[index1].Position;
-            float alpha = (position - input0)/(input1 - input0);
+            double input0 = _gradientPoints[index0].Position;
+            double input1 = _gradientPoints[index1].Position;
+            double alpha = (position - input0)/(input1 - input0);
 
             // Now perform the linear interpolation given the alpha value.
             return Color.Lerp(_gradientPoints[index0].Color, _gradientPoints[index1].Color, alpha);

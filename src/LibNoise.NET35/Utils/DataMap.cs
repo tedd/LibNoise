@@ -141,7 +141,7 @@ namespace LibNoise.Utils
         /// <summary>
         /// Gets the memory used (in Kb) for this map.
         /// </summary>
-        public float MemoryUsageKb
+        public double MemoryUsageKb
         {
             get { return MemoryUsage/8192.0f; }
         }
@@ -149,7 +149,7 @@ namespace LibNoise.Utils
         /// <summary>
         /// Gets the memory used (in Kb) for this map.
         /// </summary>
-        public float MemoryUsageMo
+        public double MemoryUsageMo
         {
             get { return MemoryUsage/8388608.0f; }
         }

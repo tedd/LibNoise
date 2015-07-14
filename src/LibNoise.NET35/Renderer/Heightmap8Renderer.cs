@@ -77,7 +77,7 @@ namespace LibNoise.Renderer
         /// <param name="y"></param>
         /// <param name="source"></param>
         /// <param name="boundDiff"></param>
-        protected override void RenderHeight(int x, int y, float source, float boundDiff)
+        protected override void RenderHeight(int x, int y, double source, double boundDiff)
         {
             byte elevation;
 
